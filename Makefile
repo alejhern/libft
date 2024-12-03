@@ -6,7 +6,7 @@
 #    By: alejhern <alejhern@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 16:12:48 by alejhern          #+#    #+#              #
-#    Updated: 2024/09/16 22:04:04 by alejhern         ###   ########.fr        #
+#    Updated: 2024/09/23 14:45:24 by alejhern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,9 +65,20 @@ SRCS_B	=	ft_lstadd_back_bonus.c												\
 		 	ft_lstnew_bonus.c													\
 		 	ft_lstsize_bonus.c
 
+MAIN	=	test/main.c															\
+			test/utils_main.c													\
+			test/test_1.c														\
+			test/man-aux/strlcpy.c												\
+			test/man-aux/strlcat.c												\
+			test/man-aux/strnstr.c												\
+			test/srcs/test_man_functions.c										\
+			test/test_2.c														\
+			test/srcs/test_aditionals_functions.c
+
 OBJS	=	${SRCS:.c=.o}
 OBJS_B	=	${SRCS_B:.c=.o}
-DEPS	=	${SRCS:.c=.d} ${SRCS_B:.c=.d}
+OBJS_M	=	${MAIN:.c=.o}
+DEPS	=	${SRCS:.c=.d} ${SRCS_B:.c=.d} ${MAIN:.c=.d}
 
 # **************************************************************************** #
 #                                 VARIABLES                                    #
@@ -75,6 +86,9 @@ DEPS	=	${SRCS:.c=.d} ${SRCS_B:.c=.d}
 
 #Nombre del Programa
 NAME		=	libft.a
+
+#Tester del Programa
+TEST		=	test_libft
 
 #Flags de compilacion
 FLAGS			=	-Wall -Werror -Wextra -I.
@@ -86,7 +100,7 @@ CFLAGS 			+=	-DBUFFER_SIZE=$(BUFFER_SIZE)
 #                                 RULES                                        #
 # **************************************************************************** #
 
-all:	${NAME}
+all:	${NAME} ${TEST}
 
 %.o: %.c
 	@echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compilando $<, espere unos segundos..."
@@ -103,13 +117,19 @@ bonus:		${OBJS_B}
 	ar -rcs ${NAME} ${OBJS_B}
 	@echo	"(•̀ᴗ•́)و ${NAME} generado!"
 
+$(TEST): ${NAME} ${OBJS_M}
+	@echo  "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compilando el ejecutable ${TEST}..."
+	cc ${FLAGS} -o ${TEST} ${OBJS_M} ${NAME}
+	@echo  "(•̀ᴗ•́)و ${TEST} generado!"
+
 clean:
-	rm -f ${OBJS} ${OBJS_B} ${DEPS}
+	rm -f ${OBJS} ${OBJS_B} ${OBJS_M} ${DEPS}
 	@echo	"¯\_(ツ)_/¯ Objects removidos!"
 
 fclean:		clean
-	rm -f ${NAME}
+	rm -f ${NAME} ${TEST}
 	@echo	"(╯°□°）╯︵ ┻━┻ $(NAME) removido!"
+	@echo	"(╯°□°）╯︵ ┻━┻ $(TEST) removido!"
 
 re: fclean all
 
