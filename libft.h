@@ -13,10 +13,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -105,6 +101,8 @@ int					ft_putstr_fd(char *s, int fd);
 void				*ft_realloc(void *ptr, size_t new_size);
 // Declarations from ft_split.c
 char				**ft_split(char const *s, char c);
+// Declarations from ft_strappend.c
+char				*ft_strappend(char *dest, char *to_append);
 // Declarations from ft_strchr.c
 char				*ft_strchr(const char *str, int c);
 // Declarations from ft_strdup.c
