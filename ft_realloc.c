@@ -15,17 +15,19 @@
 void	*ft_realloc(void *ptr, size_t new_size)
 {
 	void	*new_ptr;
+	size_t	old_size;
 
 	if (!new_size)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	new_ptr = ft_calloc(new_size, sizeof(char));
+	new_ptr = malloc(new_size);
 	if (ptr && new_ptr)
 	{
-		if (ft_strlen(ptr) + 1 < new_size)
-			ft_memcpy(new_ptr, ptr, ft_strlen(ptr) + 1);
+		old_size = *((size_t *)ptr - 1);
+		if (old_size < new_size)
+			ft_memcpy(new_ptr, ptr, old_size);
 		else
 			ft_memcpy(new_ptr, ptr, new_size);
 	}
