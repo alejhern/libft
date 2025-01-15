@@ -41,6 +41,8 @@ SRCS	=	ft_atoi.c															\
 			ft_putnbr_fd.c														\
 			ft_putstr_fd.c														\
 			ft_realloc.c														\
+			ft_split.c															\
+			ft_strappend.c														\
 			ft_strchr.c															\
 			ft_strdup.c															\
 			ft_striteri.c														\
@@ -52,7 +54,6 @@ SRCS	=	ft_atoi.c															\
 			ft_strncmp.c														\
 			ft_strnstr.c														\
 			ft_strrchr.c														\
-			ft_split.c															\
 			ft_strtrim.c														\
 			ft_substr.c															\
 			ft_tolower.c														\
@@ -92,17 +93,20 @@ CFLAGS 			+=	-DBUFFER_SIZE=$(BUFFER_SIZE)
 
 all:	${NAME}
 
-%.o: %.c
+update:
+	@git pull > /dev/null 2>&1 
+
+%.o:	%.c
 	@echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compilando $<, espere unos segundos..."
 	cc ${FLAGS} ${DEPFLAGS} -c -o $@ $<
 	@echo "(•̀ᴗ•́)و $@ generado!"
 
-$(NAME):	${OBJS}
+$(NAME):	update ${OBJS}
 	@echo	"(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Creando libreria, espere unos segundos..."
 	ar -rcs ${NAME} ${OBJS}
 	@echo	"(•̀ᴗ•́)و ${NAME} generado!"
 
-bonus:		${OBJS_B}
+bonus:	update ${OBJS_B}
 	@echo	"(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Creando libreria bonus, espere unos segundos..."
 	ar -rcs ${NAME} ${OBJS_B}
 	@echo	"(•̀ᴗ•́)و ${NAME} generado!"
