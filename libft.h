@@ -13,14 +13,14 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
+# include <limits.h>
 # include <stdarg.h>
+# include <stddef.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <stddef.h>
-# include <stdint.h>
 
 typedef struct s_list
 {
@@ -82,6 +82,8 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 // Declarations from ft_memcpy.c
 void				*ft_memcpy(void *dest, const void *src, size_t n);
+// Declarations from ft_memlen.c
+size_t				ft_memlen(const void *ptr);
 // Declarations from ft_memmove.c
 void				*ft_memmove(void *dest, const void *src, size_t n);
 // Declarations from ft_memset.c
