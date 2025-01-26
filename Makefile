@@ -97,7 +97,7 @@ all:	${NAME}
 update:
 	@git pull > /dev/null 2>&1 
 
-%.o:	%.c
+%.o:		%.c %.d libft.h ft_printf.h
 	@echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compilando $<, espere unos segundos..."
 	cc ${FLAGS} ${DEPFLAGS} -c -o $@ $<
 	@echo "(•̀ᴗ•́)و $@ generado!"
@@ -107,7 +107,7 @@ $(NAME):	update ${OBJS}
 	ar -rcs ${NAME} ${OBJS}
 	@echo	"(•̀ᴗ•́)و ${NAME} generado!"
 
-bonus:	update ${OBJS_B}
+bonus:		update ${OBJS_B}
 	@echo	"(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Creando libreria bonus, espere unos segundos..."
 	ar -rcs ${NAME} ${OBJS_B}
 	@echo	"(•̀ᴗ•́)و ${NAME} generado!"
