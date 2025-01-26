@@ -28,6 +28,12 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_pos
+{
+	int				x;
+	int				y;
+}					t_pos;
+
 // Declarations from ft_atoi.c
 int					ft_atoi(const char *str);
 // Declarations from ft_atol.c
@@ -36,6 +42,10 @@ long				ft_atol(const char *str);
 void				ft_bzero(void *s, size_t len);
 // Declarations from ft_calloc.c
 void				*ft_calloc(size_t nmemb, size_t size);
+// Declarations from ft_pos_utils.c
+t_pos				ft_pos_add(t_pos a, t_pos b);
+int					ft_pos_cmp(t_pos a, t_pos b);
+int					ft_pos_distance(t_pos a, t_pos b);
 // Declarations from ft_error_exit.c
 void				ft_error_exit(char *msg);
 void				ft_perror_exit(char *msg);

@@ -18,6 +18,7 @@ SRCS	=	ft_atoi.c															\
 			ft_atol.c															\
 			ft_bzero.c															\
 			ft_calloc.c															\
+			ft_pos.c															\
 			ft_error_exit.c														\
 			ft_free_array.c														\
 			ft_isalnum.c														\
