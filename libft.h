@@ -34,6 +34,11 @@ typedef struct s_pos
 	int				y;
 }					t_pos;
 
+// Declarations from ft_array_mods.c
+void				ft_free_array(void ***array);
+void				ft_rotate_array(void ***array);
+void				ft_rotate_rev_array(void ***array);
+void				ft_append_array(void ***array, void *new_element);
 // Declarations from ft_atoi.c
 int					ft_atoi(const char *str);
 // Declarations from ft_atol.c
@@ -49,8 +54,6 @@ int					ft_pos_distance(t_pos a, t_pos b);
 // Declarations from ft_error_exit.c
 void				ft_error_exit(char *msg);
 void				ft_perror_exit(char *msg);
-// Declarations from ft_free_array.c
-void				ft_free_array(void ***array);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c
