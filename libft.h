@@ -36,6 +36,7 @@ typedef struct s_pos
 
 // Declarations from ft_array_mods.c
 void				ft_free_array(void ***array);
+void				ft_free_func_array(void ***array, void (*f)(void *));
 void				ft_rotate_array(void ***array);
 void				ft_rotate_rev_array(void ***array);
 void				ft_append_array(void ***array, void *new_element);

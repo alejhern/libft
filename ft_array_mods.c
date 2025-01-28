@@ -25,30 +25,43 @@ void	ft_free_array(void ***array)
 	*array = NULL;
 }
 
-void ft_rotate_array(void ***array)
+void	ft_free_func_array(void ***array, void (*f)(void *))
 {
-    void *element;
-    size_t len;
+	void	**ptr;
 
-    len = ft_memlen(*array);
-    if (!array || !(*array) || len < 2)
-        return ;
-    element = (*array)[0];
-    ft_memmove(*array, *array + 1, sizeof(void *) * (len - 1));
-    (*array)[len - 1] = element;
+	if (!array || !*array)
+		return ;
+	ptr = *array;
+	while (*ptr)
+		f(*ptr++);
+	free(*array);
+	*array = NULL;
+}
+
+void	ft_rotate_array(void ***array)
+{
+	void	*element;
+	size_t	len;
+
+	len = ft_memlen(*array);
+	if (!array || !(*array) || len < 2)
+		return ;
+	element = (*array)[0];
+	ft_memmove(*array, *array + 1, sizeof(void *) * (len - 1));
+	(*array)[len - 1] = element;
 }
 
 void	ft_rotate_rev_array(void ***array)
 {
-    void *element;
-    size_t len;
+	void	*element;
+	size_t	len;
 
-    len = ft_memlen(*array);
-    if (!array || !(*array) || len < 2)
-        return ;
-    element = (*array)[len - 1];
-    ft_memmove(*array + 1, *array, sizeof(void *) * (len - 1));
-    (*array)[0] = element;
+	len = ft_memlen(*array);
+	if (!array || !(*array) || len < 2)
+		return ;
+	element = (*array)[len - 1];
+	ft_memmove(*array + 1, *array, sizeof(void *) * (len - 1));
+	(*array)[0] = element;
 }
 
 void	ft_append_array(void ***array, void *new_element)
@@ -56,8 +69,8 @@ void	ft_append_array(void ***array, void *new_element)
 	size_t	len;
 	void	**new_array;
 
-    if (!array || !(*array) || !new_element)
-        return ;
+	if (!array || !(*array) || !new_element)
+		return ;
 	len = ft_memlen(*array);
 	new_array = ft_realloc(*array, (len + 1) * sizeof(void *));
 	if (!new_array)
