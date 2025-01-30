@@ -50,6 +50,7 @@ void				ft_bzero(void *s, size_t len);
 void				*ft_calloc(size_t nmemb, size_t size);
 // Declarations from ft_pos_utils.c
 t_pos				ft_pos_add(t_pos a, t_pos b);
+t_pos				ft_pos_sub(t_pos a, t_pos b);
 int					ft_pos_cmp(t_pos a, t_pos b);
 int					ft_pos_distance(t_pos a, t_pos b);
 // Declarations from ft_error_exit.c
