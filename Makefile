@@ -20,6 +20,8 @@ SRCS	=	ft_array_mods.c														\
 			ft_bzero.c															\
 			ft_calloc.c															\
 			ft_pos.c															\
+			pipex_utils.c														\
+			ft_pipex.c															\
 			ft_error_exit.c														\
 			ft_isalnum.c														\
 			ft_isalpha.c														\
