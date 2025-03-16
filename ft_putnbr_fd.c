@@ -12,16 +12,17 @@
 
 #include "libft.h"
 
-int	ft_putnbr_fd(int nbr, int fd)
+int	ft_putnbr_fd(const int nbr, int fd)
 {
 	char	*nb;
+	int		result;
 
 	if (nbr == INT_MIN)
 		return (ft_putstr_fd("-2147483648", fd));
 	nb = ft_itoa(nbr);
 	if (!nb)
 		return (-1);
-	nbr = ft_putstr_fd(nb, fd);
+	result = ft_putstr_fd(nb, fd);
 	free (nb);
-	return (nbr);
+	return (result);
 }

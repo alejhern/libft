@@ -109,13 +109,13 @@ void				*ft_memset(void *dest, int c, size_t len);
 int					ft_printf(char const *str, ...);
 int					ft_printf_fd(int fd, char const *str, ...);
 // Declarations from ft_putchar_fd.c
-int					ft_putchar_fd(char c, int fd);
+int					ft_putchar_fd(const char c, int fd);
 // Declarations from ft_putendl_fd.c
-int					ft_putendl_fd(char *s, int fd);
+int					ft_putendl_fd(const char *str, int fd);
 // Declarations from ft_putnbr_fd.c
-int					ft_putnbr_fd(int nbr, int fd);
+int					ft_putnbr_fd(const int nbr, int fd);
 // Declarations from ft_putstr_fd.c
-int					ft_putstr_fd(char *s, int fd);
+int					ft_putstr_fd(const char *str, int fd);
 // Declarations from ft_realloc.c
 void				*ft_realloc(void *ptr, size_t new_size);
 // Declarations from ft_split.c
