@@ -67,14 +67,22 @@ void	ft_rotate_rev_array(void ***array)
 void	ft_append_array(void ***array, void *new_element)
 {
 	size_t	len;
-	void	**new_array;
 
-	if (!array || !(*array) || !new_element)
+	if (!array || !new_element)
 		return ;
+	if (!*array)
+	{
+		*array = malloc(2 * sizeof(void *));
+		if (!*array)
+			return ;
+		(*array)[0] = new_element;
+		(*array)[1] = NULL;
+		return ;
+	}
 	len = ft_memlen(*array);
-	new_array = ft_realloc(*array, (len + 1) * sizeof(void *));
-	if (!new_array)
+	*array = ft_realloc(*array, (len + 2) * sizeof(void *));
+	if (!*array)
 		return ;
-	*array = new_array;
-	(*array)[len] = new_element;
+	*array[len] = new_element;
+	*array[len + 1] = NULL;
 }
