@@ -83,6 +83,6 @@ void	ft_append_array(void ***array, void *new_element)
 	*array = ft_realloc(*array, (len + 2) * sizeof(void *));
 	if (!*array)
 		return ;
-	*array[len] = new_element;
-	*array[len + 1] = NULL;
+	(*array)[len] = new_element;
+	(*array)[len + 1] = NULL;
 }
