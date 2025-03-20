@@ -12,21 +12,6 @@
 
 #include "libft.h"
 
-static size_t	ft_countdigits(int nb)
-{
-	size_t	len;
-
-	len = 1;
-	if (nb < 0)
-		len++;
-	while (nb / 10 != 0)
-	{
-		len++;
-		nb /= 10;
-	}
-	return (len);
-}
-
 char	*ft_itoa(int nb)
 {
 	long	nb_long;
@@ -34,7 +19,7 @@ char	*ft_itoa(int nb)
 	char	*str;
 
 	nb_long = nb;
-	digits = ft_countdigits(nb_long);
+	digits = ft_nblen(nb_long);
 	str = (char *)ft_calloc(digits + 1, sizeof(char));
 	if (!str)
 		return (NULL);
