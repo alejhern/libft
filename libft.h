@@ -48,11 +48,6 @@ long				ft_atol(const char *str);
 void				ft_bzero(void *s, size_t len);
 // Declarations from ft_calloc.c
 void				*ft_calloc(size_t nmemb, size_t size);
-// Declarations from ft_pos_utils.c
-t_pos				ft_pos_add(t_pos a, t_pos b);
-t_pos				ft_pos_sub(t_pos a, t_pos b);
-int					ft_pos_cmp(t_pos a, t_pos b);
-int					ft_pos_distance(t_pos a, t_pos b);
 // Declarations from ft_error_exit.c
 void				ft_error_exit(const char *msg);
 void				ft_func_error_exit(const char *msg, void **param,
@@ -105,6 +100,13 @@ size_t				ft_memlen(const void *ptr);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 // Declarations from ft_memset.c
 void				*ft_memset(void *dest, int c, size_t len);
+// Declarations from ft_nblen.c
+size_t				ft_nblen(int nb);
+// Declarations from ft_pos.c
+t_pos				ft_pos_add(t_pos a, t_pos b);
+t_pos				ft_pos_sub(t_pos a, t_pos b);
+int					ft_pos_cmp(t_pos a, t_pos b);
+int					ft_pos_distance(t_pos a, t_pos b);
 // Declarations from ft_printf.c
 int					ft_printf(char const *str, ...);
 int					ft_printf_fd(int fd, char const *str, ...);

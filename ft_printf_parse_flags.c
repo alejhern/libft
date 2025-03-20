@@ -77,36 +77,36 @@ t_flags	parse_flags(const char **str)
 	return (flags);
 }
 
-void	ft_printpad(char pad_char, int pad_len, int *len)
+void	ft_printf_pad(char pad_char, int pad_len, int *len)
 {
 	while (pad_len-- > 0)
-		ft_printchar(pad_char, init_flags(0), len);
+		ft_printf_char(pad_char, init_flags(0), len);
 }
 
-void	ft_printnbr_flags(int nb, t_flags flags, int total_len, int *len)
+void	ft_printf_nbr_flags(int nb, t_flags flags, int total_len, int *len)
 {
 	if (flags.prefix)
 	{
 		if (flags.zero && total_len > 0 && flags.dot == -1)
 		{
-			ft_printstr(flags.prefix, init_flags(flags.bl_mayus), len);
-			ft_printpad('0', total_len, len);
+			ft_printf_str(flags.prefix, init_flags(flags.bl_mayus), len);
+			ft_printf_pad('0', total_len, len);
 		}
 		else
 		{
-			ft_printpad(' ', total_len, len);
-			ft_printstr(flags.prefix, init_flags(flags.bl_mayus), len);
+			ft_printf_pad(' ', total_len, len);
+			ft_printf_str(flags.prefix, init_flags(flags.bl_mayus), len);
 		}
 		return ;
 	}
 	if (nb < 0 || flags.plus || flags.space)
 		total_len++;
 	if (nb < 0)
-		ft_printchar('-', init_flags(flags.bl_mayus), len);
+		ft_printf_char('-', init_flags(flags.bl_mayus), len);
 	else if (flags.plus)
-		ft_printchar('+', init_flags(flags.bl_mayus), len);
+		ft_printf_char('+', init_flags(flags.bl_mayus), len);
 	else if (flags.space)
-		ft_printchar(' ', init_flags(flags.bl_mayus), len);
+		ft_printf_char(' ', init_flags(flags.bl_mayus), len);
 	if (!flags.minus && flags.zero && flags.dot == -1)
-		ft_printpad('0', flags.width - total_len, len);
+		ft_printf_pad('0', flags.width - total_len, len);
 }
