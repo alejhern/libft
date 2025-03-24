@@ -33,10 +33,11 @@ void	ft_printf_float(double num, t_flags flags, int *len)
 	while (decimal_part > epsilon && (flags.dot == -1 || precision < flags.dot))
 	{
 		decimal_part *= 10;
-		digit = (int)decimal_part;
+		digit = (int)(decimal_part + 0.5);
 		ft_printf_char(digit + '0', init_flags(0), len);
 		decimal_part -= digit;
 		precision++;
 		epsilon *= 10;
 	}
+	ft_printf_pad('0', flags.dot - precision, len);
 }
