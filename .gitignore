@@ -6,10 +6,10 @@
 #    By: amhernandez <alejhern@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:11:46 by amhernandez       #+#    #+#              #
-#    Updated: 2025/01/08 01:12:12 by amhernandez      ###   ########.fr        #
+#    Updated: 2025/03/28 20:24:40 by amhernandez      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-*.o
-*.d
 libft.a
+objs
+deps
