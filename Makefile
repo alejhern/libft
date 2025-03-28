@@ -22,9 +22,7 @@ SRCS      = ft_array_mods.c \
             ft_atol.c \
             ft_bzero.c \
             ft_calloc.c \
-            ft_pos.c \
-            pipex_utils.c \
-            ft_pipex.c \
+            ft_env.c \
             ft_error_exit.c \
             ft_isalnum.c \
             ft_isalpha.c \
@@ -41,10 +39,12 @@ SRCS      = ft_array_mods.c \
             ft_memmove.c \
             ft_memset.c \
             ft_nblen.c \
+            ft_pipex.c \
+            ft_pos.c \
             ft_printf.c \
+            ft_printf_float.c \
             ft_printf_parse_flags.c \
             ft_printf_printers.c \
-            ft_printf_float.c \
             ft_putchar_fd.c \
             ft_putendl_fd.c \
             ft_putnbr_fd.c \
@@ -67,7 +67,8 @@ SRCS      = ft_array_mods.c \
             ft_substr.c \
             ft_tolower.c \
             ft_toupper.c \
-            get_next_line.c
+            get_next_line.c \
+            pipex_utils.c
 
 SRCS_B    = ft_lstadd_back_bonus.c \
             ft_lstadd_front_bonus.c \
@@ -143,7 +144,7 @@ $(OBJS_DIR)/%.o: %.c | dirs
 
 -include $(DEPS)
 
-$(NAME): $(OBJS)
+$(NAME): update $(OBJS)
 	@echo "$(MAGENTA)🔗 Creando librería: $(YELLOW)$(NAME)$(RESET)"
 	@ar -rcs $(NAME) $(OBJS)
 	@echo "🎉 $(GREEN)Librería completada: $(YELLOW)$(NAME)$(RESET) 🎉"

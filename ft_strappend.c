@@ -12,18 +12,16 @@
 
 #include "libft.h"
 
-char	*ft_strappend(char *dest, char *to_append)
+char	*ft_strappend(char *dest, const char *to_append)
 {
 	size_t	dest_len;
 	size_t	to_append_len;
 	char	*new_str;
 
-	if (!dest && !to_append)
+	if (!dest)
 		return (NULL);
 	if (!to_append)
 		return (dest);
-	if (!dest)
-		return (ft_strdup(to_append));
 	dest_len = ft_strlen(dest);
 	to_append_len = ft_strlen(to_append);
 	new_str = (char *)malloc((dest_len + to_append_len + 1) * sizeof(char));
@@ -33,8 +31,8 @@ char	*ft_strappend(char *dest, char *to_append)
 		return (NULL);
 	}
 	ft_strlcpy(new_str, dest, dest_len + 1);
-	free(dest);
 	ft_strlcat(new_str, to_append, dest_len + to_append_len + 1);
 	new_str[dest_len + to_append_len] = '\0';
+	free(dest);
 	return (new_str);
 }

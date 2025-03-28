@@ -48,6 +48,11 @@ long				ft_atol(const char *str);
 void				ft_bzero(void *s, size_t len);
 // Declarations from ft_calloc.c
 void				*ft_calloc(size_t nmemb, size_t size);
+// Declarations from ft_env.c
+char				**ft_env(const char **env);
+char				*ft_getenv(const char *name, char **env);
+int					ft_unsetenv(const char *name, char ***env);
+int					ft_setenv(const char *name, const char *value, char ***env);
 // Declarations from ft_error_exit.c
 void				ft_error_exit(const char *msg);
 void				ft_func_error_exit(const char *msg, void **param,
@@ -123,7 +128,7 @@ void				*ft_realloc(void *ptr, size_t new_size);
 // Declarations from ft_split.c
 char				**ft_split(char const *s, char c);
 // Declarations from ft_strappend.c
-char				*ft_strappend(char *dest, char *to_append);
+char				*ft_strappend(char *dest, const char *to_append);
 // Declarations from ft_strchr.c
 char				*ft_strchr(const char *str, int c);
 // Declarations from ft_strdup.c

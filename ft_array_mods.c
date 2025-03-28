@@ -83,7 +83,7 @@ void	ft_append_array(void ***array, void *new_element)
 	len = ft_memlen(*array);
 	new_array = malloc((len + 2) * sizeof(void *));
 	if (!new_array)
-		return ;
+		return (ft_free_array(array));
 	ft_memcpy(new_array, *array, len * sizeof(void *));
 	free(*array);
 	*array = new_array;
