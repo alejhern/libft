@@ -14,11 +14,33 @@ The project is organized into multiple C files, each containing specific functio
 ## 📊 Included Functions
 
 ### 1. 🪄 Array Modifications
-- `ft_append_array(void ***array, void *new_element)`: Adds a new element to a dynamically allocated array.
 - `ft_free_array(void ***array)`: Frees a dynamically allocated array.
+  - **Example:**
+    ```c
+    ft_free_array((void ***)&arr);
+    ```
 - `ft_free_func_array(void ***array, void (*f)(void *))`: Frees a dynamically allocated array using a custom function.
+  - **Example:**
+    ```c
+    ft_free_func_array((void ***)&arr, free);
+    ```
 - `ft_rotate_array(void ***array)`: Rotates the array forward (moves elements to the right).
+  - **Example:**
+    ```c
+    ft_rotate_array((void ***)&arr);
+    ```
 - `ft_rotate_rev_array(void ***array)`: Rotates the array backward (moves elements to the left).
+  - **Example:**
+    ```c
+    ft_rotate_rev_array((void ***)&arr);
+    ```
+- `ft_append_array(void ***array, void *new_element)`: Adds a new element to a dynamically allocated array.
+  - **Example:**
+    ```c
+    char **arr = NULL;
+    ft_append_array((void ***)&arr, ft_strdup("Hello"));
+    ft_append_array((void ***)&arr, ft_strdup("World"));
+    ```
 
 ### 2. ♻️ Character and String Conversion
 - `ft_atoi(const char *str)`: Converts a string to an integer.
@@ -88,6 +110,31 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_error_exit(const char *msg)`: Prints an error message and immediately terminates the program execution.
 - `ft_func_error_exit(const char *msg, void **param, void *(f)(void *))`: Executes a function before terminating the program.
 - `ft_perror_exit(const char *msg)`: Prints an error message followed by the standard error (errno) and terminates the program execution.
+
+### 10. 🌍 Environment Variable Management
+- `ft_env(const char **env)`: Copies the system environment variables into a dynamically allocated array.
+  - **Example:**
+    ```c
+    char **env_copy = ft_env((const char **)environ);
+    ```
+
+- `ft_getenv(const char *name, char **env)`: Retrieves the value of an environment variable.
+  - **Example:**
+    ```c
+    char *path = ft_getenv("PATH", env);
+    ```
+
+- `ft_unsetenv(const char *name, char ***env)`: Removes an environment variable from the array.
+  - **Example:**
+    ```c
+    ft_unsetenv("USER", &env);
+    ```
+
+- `ft_setenv(const char *name, const char *value, char ***env)`: Adds or updates an environment variable in the array.
+  - **Example:**
+    ```c
+    ft_setenv("MY_VAR", "42", &env);
+    ```
 
 ---
 
