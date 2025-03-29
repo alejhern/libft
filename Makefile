@@ -165,4 +165,20 @@ fclean: clean
 re: fclean all
 	@echo "$(CYAN)♻️  Reconstrucción completada!$(RESET) 🔄"
 
-.PHONY: all clean fclean re bonus update dirs
+merge_in_master:
+	@echo "Current branch: $(shell git rev-parse --abbrev-ref HEAD)"
+	@if [ "$(shell git rev-parse --abbrev-ref HEAD)" = "developing" ]; then \
+        echo "🔄 Cambiando a la rama 'master' y haciendo merge..."; \
+		git checkout master && \
+		git merge developing && \
+		echo "✅ Merge completado!"; \
+        echo "🔄 Subiendo cambios a la rama 'master'..."; \
+		git push origin master && \
+        echo "✅ Cambios subidos!"; \
+        echo "$(CYAN)🔄 Cambiando a la rama 'developing'$(RESET) 🔄"; \
+		git checkout developing; \
+	else \
+		echo "🚫 No estás en la rama 'developing'"; \
+	fi
+
+.PHONY: all clean fclean re bonus update dirs merge_in_master
