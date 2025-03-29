@@ -94,8 +94,29 @@ DEPFLAGS  = -MMD -MP
 BUFFER_SIZE ?= 42
 CFLAGS    += -DBUFFER_SIZE=$(BUFFER_SIZE)
 
+# Calculamos el total de archivos a compilar
+TOTAL_SRCS = $(words $(SRCS) $(SRCS_B))
+COMPILED = 0
+
 # **************************************************************************** #
-#                                 COLORES                                       #
+#                                 FUNCIONES                                    #
+# **************************************************************************** #
+
+define print_progress
+	@printf "\033[2K\r"  # Limpia la línea actual
+	@printf "$(CYAN)["
+	@for i in $$(seq 1 $(1)); do printf "#"; done
+	@for i in $$(seq $$(($(1) + 1)) 20); do printf " "; done
+	@printf "] $(2)%% $(GREEN)(%d/%d)%-3s$(RESET)" $(3) $(4)
+	@printf "\033[1B"  # Mueve el cursor abajo para la siguiente línea
+endef
+
+define reset_cursor
+	@printf "\033[$(1)A"  # Mueve el cursor arriba N líneas
+endef
+
+# **************************************************************************** #
+#                                 COLORES                                      #
 # **************************************************************************** #
 
 RESET   = \033[0m
@@ -111,10 +132,10 @@ BLUE    = \033[38;5;33m
 NEON    = \033[38;5;201m
 
 # **************************************************************************** #
-#                                 REGLAS                                        #
+#                                 REGLAS                                       #
 # **************************************************************************** #
 
-all: banner dirs $(NAME)
+all: banner dirs $(NAME) bonus
 
 banner:
 	@echo "$(NEON)"
@@ -138,9 +159,13 @@ update:
 	@echo "✅ Repositorio actualizado!"
 
 $(OBJS_DIR)/%.o: %.c | dirs
-	@echo "$(CYAN)🔧 Compilando: $(YELLOW)$<$(RESET)"
+	@$(eval COMPILED=$(shell expr $(COMPILED) + 1))
+	@$(eval PERCENT=$(shell expr $(COMPILED) \* 100 / $(TOTAL_SRCS)))
+	@$(eval PROGRESS=$(shell expr $(PERCENT) \* 20 / 100))
+	@$(call print_progress,$(PROGRESS),$(PERCENT),$(COMPILED),$(TOTAL_SRCS))
+	@printf "$(CYAN)🔧 Compilando: $(YELLOW)%-30s$(RESET)" "$<"
 	@cc $(FLAGS) $(DEPFLAGS) -c -o $@ $< -MF $(DEPS_DIR)/$*.d
-	@echo "✅ Objeto generado: $(GREEN)$@ $(MAGENTA)🌟$(RESET)"
+	@printf "✅ Objeto generado: $(GREEN)%s $(MAGENTA)🌟$(RESET)\n" "$@"
 
 -include $(DEPS)
 
