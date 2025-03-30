@@ -39,7 +39,7 @@ static char	*find_path(char *cmd, char **env)
 	return (path);
 }
 
-static void	comand_not_found(char **cmd, char *path)
+static int	comand_not_found(char **cmd, char *path)
 {
 	ft_putstr_fd("comand not found: ", 2);
 	if (cmd)
@@ -48,14 +48,13 @@ static void	comand_not_found(char **cmd, char *path)
 		ft_free_array((void ***)&cmd);
 	}
 	free(path);
-	exit(127);
+	return (127);
 }
 
-void	ft_execute(char *line, char **env)
+int	ft_execute(char *line, char **env)
 {
 	char	**cmd;
 	char	*path;
-	int		resp;
 
 	if (!line || *line == '\0')
 		comand_not_found(NULL, NULL);
@@ -64,13 +63,15 @@ void	ft_execute(char *line, char **env)
 		ft_error_exit("Cannot allocate memory");
 	path = find_path(cmd[0], env);
 	if (!path || access(path, X_OK) == -1)
-		comand_not_found(cmd, path);
-	resp = execve(path, cmd, env);
+		return (comand_not_found(cmd, path));
+	 if (execve(path, cmd, env) == -1)
+    {
+        perror("Cannot execute command");
+        ft_free_array((void ***)&cmd);
+        free(path);
+        return (126);
+    }
 	ft_free_array((void ***)&cmd);
 	free(path);
-	if (resp == -1)
-	{
-		perror("Cannot execute command");
-		exit(126);
-	}
+	return (0);
 }
