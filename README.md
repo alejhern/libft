@@ -45,6 +45,7 @@ The project is organized into multiple C files, each containing specific functio
 ### 2. ♻️ Character and String Conversion
 - `ft_atoi(const char *str)`: Converts a string to an integer.
 - `ft_atol(const char *str)`: Converts a string to a long integer.
+- `ft_nblen(int nb)`: Returns the length of a number in characters.
 - `ft_itoa(int nb)`: Converts an integer to a string.
 - `ft_itoa_base(unsigned long long nb, int base)`: Converts a number to a string in a specified base.
 - `ft_tolower(int c)`: Converts a character to lowercase.
