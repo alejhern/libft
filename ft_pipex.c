@@ -30,7 +30,7 @@ static void	child_process(char *cmd, char **env, int input_fd, int output_fd)
 		ft_perror_exit("dup2 output_fd");
 	close(input_fd);
 	close(output_fd);
-	execute(cmd, env);
+	ft_execute(cmd, env);
 	ft_error_exit("execve");
 }
 

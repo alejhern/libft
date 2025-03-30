@@ -58,6 +58,8 @@ void				ft_error_exit(const char *msg);
 void				ft_func_error_exit(const char *msg, void **param,
 						void *(f)(void *));
 void				ft_perror_exit(const char *msg);
+// Declarations from ft_execute.c
+void				ft_execute(char *line, char **env);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c
@@ -161,6 +163,7 @@ int					ft_tolower(int c);
 // Declarations from ft_toupper.c
 int					ft_toupper(int c);
 // Declarations from get_next_line.c
+void				ft_clean_line(char **line);
 char				*get_next_line(int fd);
 
 #endif

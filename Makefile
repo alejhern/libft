@@ -24,6 +24,7 @@ SRCS      = ft_array_mods.c \
             ft_calloc.c \
             ft_env.c \
             ft_error_exit.c \
+            ft_execute.c \
             ft_isalnum.c \
             ft_isalpha.c \
             ft_isascii.c \

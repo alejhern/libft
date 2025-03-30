@@ -1,4 +1,4 @@
-# Libft - C Function Library
+# 🧭Libft - C Function Library
 
 ## ✨ Introduction
 `libft` is a C library that implements a set of useful functions for string manipulation, memory management, linked lists, and other common operations. It is an essential tool for any programmer looking to strengthen their C skills and optimize project development.
@@ -22,7 +22,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_free_func_array(void ***array, void (*f)(void *))`: Frees a dynamically allocated array using a custom function.
   - **Example:**
     ```c
-    ft_free_func_array((void ***)&arr, free);
+    ft_free_func_array((void ***)&arr, mlx_delete_texture);
     ```
 - `ft_rotate_array(void ***array)`: Rotates the array forward (moves elements to the right).
   - **Example:**
@@ -50,7 +50,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_tolower(int c)`: Converts a character to lowercase.
 - `ft_toupper(int c)`: Converts a character to uppercase.
 
-### 3. 📖 File Handling and Reading
+### 3. 📖 File Handling and Reading 
 - `get_next_line(int fd)`: Reads the next line from a file descriptor. This function is useful for processing files line by line efficiently.
 
 ### 4. ✍️ Input and Output
@@ -61,7 +61,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_putnbr_fd(int nbr, int fd)`: Writes a number to a file descriptor.
 - `ft_putstr_fd(char *s, int fd)`: Writes a string to a file descriptor.
 
-### 5. 📚 Linked Lists
+### 5. 🔗 Linked Lists
 - `ft_lstadd_back(t_list **lst, t_list *new)`: Adds a node at the end of the list.
 - `ft_lstadd_front(t_list **lst, t_list *new)`: Adds a node at the beginning of the list.
 - `ft_lstclear(t_list **lst, void (*del)(void *))`: Deletes all nodes from the list.
@@ -89,7 +89,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_pos_distance(t_pos a, t_pos b)`: Calculates the distance between two positions.
 - `ft_pos_sub(t_pos a, t_pos b)`: Subtracts two `t_pos` structures.
 
-### 8. 📒 String Manipulation
+### 8. ✂️ String Manipulation
 - `ft_split(const char *s, char c)`: Splits a string into an array of strings based on a delimiter.
 - `ft_strappend(char *dest, char *to_append)`: Appends one string to another.
 - `ft_strchr(const char *str, int c)`: Searches for a character in a string.
@@ -106,35 +106,17 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_strtrim(const char *s1, const char *set)`: Removes specified characters from the edges of a string.
 - `ft_substr(const char *s, unsigned int start, size_t len)`: Extracts a substring.
 
-### 9. 🌋 Functions for Error Handling
+### 9. 🚨 Functions for Error Handling
 - `ft_error_exit(const char *msg)`: Prints an error message and immediately terminates the program execution.
 - `ft_func_error_exit(const char *msg, void **param, void *(f)(void *))`: Executes a function before terminating the program.
 - `ft_perror_exit(const char *msg)`: Prints an error message followed by the standard error (errno) and terminates the program execution.
 
-### 10. 🌍 Environment Variable Management
+### 10. 🌍 Environment Variable Management and Execution
 - `ft_env(const char **env)`: Copies the system environment variables into a dynamically allocated array.
-  - **Example:**
-    ```c
-    char **env_copy = ft_env((const char **)environ);
-    ```
-
 - `ft_getenv(const char *name, char **env)`: Retrieves the value of an environment variable.
-  - **Example:**
-    ```c
-    char *path = ft_getenv("PATH", env);
-    ```
-
 - `ft_unsetenv(const char *name, char ***env)`: Removes an environment variable from the array.
-  - **Example:**
-    ```c
-    ft_unsetenv("USER", &env);
-    ```
-
 - `ft_setenv(const char *name, const char *value, char ***env)`: Adds or updates an environment variable in the array.
-  - **Example:**
-    ```c
-    ft_setenv("MY_VAR", "42", &env);
-    ```
+- `ft_execute(char *line, char **env)`: Executes a command line.
 
 ---
 
