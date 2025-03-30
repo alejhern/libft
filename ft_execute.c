@@ -64,13 +64,13 @@ int	ft_execute(char *line, char **env)
 	path = find_path(cmd[0], env);
 	if (!path || access(path, X_OK) == -1)
 		return (comand_not_found(cmd, path));
-	 if (execve(path, cmd, env) == -1)
-    {
-        perror("Cannot execute command");
-        ft_free_array((void ***)&cmd);
-        free(path);
-        return (126);
-    }
+	if (execve(path, cmd, env) == -1)
+	{
+		perror("Cannot execute command");
+		ft_free_array((void ***)&cmd);
+		free(path);
+		return (126);
+	}
 	ft_free_array((void ***)&cmd);
 	free(path);
 	return (0);
