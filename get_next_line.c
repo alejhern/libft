@@ -54,6 +54,17 @@ static t_gnl	*get_new_buffer(int fd, t_gnl *gnl)
 	return (gnl);
 }
 
+void	ft_clean_line(char **line)
+{
+	char	*ptr;
+
+	if (!line || !*line)
+		return ;
+	ptr = ft_strtrim(*line, "\n");
+	free(*line);
+	*line = ptr;
+}
+
 char	*get_next_line(int fd)
 {
 	static t_gnl	gnl[1024] = {{NULL, NULL, NULL}};
