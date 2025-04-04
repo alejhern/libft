@@ -18,8 +18,10 @@ char	*ft_strappend(char *dest, const char *to_append)
 	size_t	to_append_len;
 	char	*new_str;
 
-	if (!dest)
+	if (!dest && !to_append)
 		return (NULL);
+	if (!dest && to_append)
+		return (ft_strdup(to_append));
 	if (!to_append)
 		return (dest);
 	dest_len = ft_strlen(dest);
