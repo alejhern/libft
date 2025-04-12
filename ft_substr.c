@@ -30,3 +30,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(substr, (s + start), (len + 1));
 	return (substr);
 }
+
+char	*ft_save_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+
+	substr = ft_substr(s, start, len);
+	if (!substr)
+		ft_perror_exit("Can't allocate memory");
+	return (substr);
+}

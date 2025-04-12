@@ -24,3 +24,13 @@ char	*ft_strdup(const char *str)
 	ft_strlcpy(dup, str, size);
 	return (dup);
 }
+
+char	*ft_save_strdup(const char *str)
+{
+	char	*dup;
+
+	dup = ft_strdup(str);
+	if (!dup)
+		ft_perror_exit("can't allocate memory");
+	return (dup);
+}

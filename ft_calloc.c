@@ -26,3 +26,13 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(arr, t_size);
 	return (arr);
 }
+
+void	*ft_save_calloc(size_t nmemb, size_t size)
+{
+	void	*arr;
+
+	arr = ft_calloc(nmemb, size);
+	if (!arr)
+		ft_perror_exit("Can't allocate memory");
+	return (arr);
+}

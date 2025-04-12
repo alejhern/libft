@@ -48,6 +48,7 @@ long				ft_atol(const char *str);
 void				ft_bzero(void *s, size_t len);
 // Declarations from ft_calloc.c
 void				*ft_calloc(size_t nmemb, size_t size);
+void				*ft_save_calloc(size_t nmemb, size_t size);
 // Declarations from ft_env.c
 char				**ft_env(const char **env);
 char				*ft_getenv(const char *name, char **env);
@@ -93,6 +94,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 // Declarations from ft_lstnew_bonus.c
 t_list				*ft_lstnew(void *content);
+t_list				*ft_save_lstnew(void *content);
 // Declarations from ft_lstsize_bonus.c
 size_t				ft_lstsize(t_list *lst);
 // Declarations from ft_memchr.c
@@ -135,6 +137,7 @@ char				*ft_strappend(char *dest, const char *to_append);
 char				*ft_strchr(const char *str, int c);
 // Declarations from ft_strdup.c
 char				*ft_strdup(const char *str);
+char				*ft_save_strdup(const char *str);
 // Declarations from ft_striteri.c
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 // Declarations from ft_strjoin.c
@@ -158,6 +161,7 @@ char				*ft_strrchr(const char *str, int c);
 char				*ft_strtrim(char const *s1, char const *set);
 // Declarations from ft_substr.c
 char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_save_substr(char const *s, unsigned int start, size_t len);
 // Declarations from ft_tolower.c
 int					ft_tolower(int c);
 // Declarations from ft_toupper.c

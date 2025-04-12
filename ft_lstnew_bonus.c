@@ -23,3 +23,13 @@ t_list	*ft_lstnew(void *content)
 	lst->next = NULL;
 	return (lst);
 }
+
+t_list	*ft_save_lstnew(void *content)
+{
+	t_list	*lst;
+
+	lst = ft_lstnew(content);
+	if (!lst)
+		ft_perror_exit("Can't allocate memory");
+	return (lst);
+}
