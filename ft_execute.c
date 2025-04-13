@@ -44,21 +44,18 @@ static int	comand_not_found(char **cmd, char *path)
 {
 	ft_putstr_fd("comand not found: ", 2);
 	if (cmd)
-	{
 		ft_putendl_fd(cmd[0], 2);
-		ft_free_array((void ***)&cmd);
-	}
 	free(path);
 	return (127);
 }
 
-static int	manage_pid(char **cmd, char *path, char **env, int no_pid)
+static int	manage_pid(char **cmd, char *path, char **env, int shell_mode)
 {
 	pid_t	pid;
 	int		status;
 
 	pid = 0;
-	if (no_pid)
+	if (shell_mode)
 		pid = fork();
 	if (pid == -1)
 	{
@@ -80,17 +77,17 @@ static int	manage_pid(char **cmd, char *path, char **env, int no_pid)
 	return (0);
 }
 
-int	ft_execute(char **cmd, char **env, int no_pid)
+int	ft_execute(char **cmd, char **env, int shell_mode)
 {
 	char	*path;
 	int		pid_wait;
 
 	if (cmd == NULL || cmd[0] == NULL)
-		comand_not_found(NULL, NULL);
+		return (comand_not_found(NULL, NULL));
 	path = find_path(cmd[0], env);
 	if (!path || access(path, X_OK) == -1)
 		return (comand_not_found(cmd, path));
-	pid_wait = manage_pid(cmd, path, env, no_pid);
+	pid_wait = manage_pid(cmd, path, env, shell_mode);
 	free(path);
 	return (pid_wait);
 }
