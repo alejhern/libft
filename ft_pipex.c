@@ -24,7 +24,6 @@ static void	parent_process(t_pipex *pipex, int *previous_fd, int *index)
 
 static void	child_process(char *cmd, char **env, int input_fd, int output_fd)
 {
-	int		resp;
 	char	**cmd_splited;
 
 	if (dup2(input_fd, STDIN_FILENO) == -1)
@@ -34,10 +33,10 @@ static void	child_process(char *cmd, char **env, int input_fd, int output_fd)
 	close(input_fd);
 	close(output_fd);
 	cmd_splited = ft_split(cmd, ' ');
-	resp = ft_execute(cmd_splited, env);
-	ft_free_array((void ***) &cmd_splited);
-	if (resp != 0)
-		exit(resp);
+	if (!cmd_splited)
+		ft_error_exit("malloc err");
+	ft_execute(cmd_splited, env, 0);
+	ft_free_array((void ***)&cmd_splited);
 	ft_error_exit("execve");
 }
 

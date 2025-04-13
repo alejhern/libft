@@ -60,7 +60,7 @@ void				ft_func_error_exit(const char *msg, void **param,
 						void *(f)(void *));
 void				ft_perror_exit(const char *msg);
 // Declarations from ft_execute.c
-int					ft_execute(char **cmd, char **env);
+int					ft_execute(char **cmd, char **env, int no_pid);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c
