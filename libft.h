@@ -60,7 +60,7 @@ void				ft_func_error_exit(const char *msg, void **param,
 						void *(f)(void *));
 void				ft_perror_exit(const char *msg);
 // Declarations from ft_execute.c
-int					ft_execute(char *line, char **env);
+int					ft_execute(char **cmd, char **env);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c
@@ -161,7 +161,8 @@ char				*ft_strrchr(const char *str, int c);
 char				*ft_strtrim(char const *s1, char const *set);
 // Declarations from ft_substr.c
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_save_substr(char const *s, unsigned int start, size_t len);
+char				*ft_save_substr(char const *s, unsigned int start,
+						size_t len);
 // Declarations from ft_tolower.c
 int					ft_tolower(int c);
 // Declarations from ft_toupper.c

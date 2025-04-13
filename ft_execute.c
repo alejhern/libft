@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "pipex.h"
 
 static char	*find_path(char *cmd, char **env)
 {
@@ -51,27 +52,45 @@ static int	comand_not_found(char **cmd, char *path)
 	return (127);
 }
 
-int	ft_execute(char *line, char **env)
+static int	manage_pid(char **cmd, char *path, char **env)
 {
-	char	**cmd;
-	char	*path;
+	pid_t	pid;
+	int		status;
 
-	if (!line || *line == '\0')
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork failed");
+		ft_free_array((void ***)&cmd);
+		free(path);
+		return (1);
+	}
+	else if (pid == 0)
+	{
+		if (execve(path, cmd, env) == -1)
+		{
+			perror("Cannot execute command");
+			exit(126);
+		}
+	}
+	else
+		waitpid(pid, &status, 0);
+	return (0);
+}
+
+int	ft_execute(char **cmd, char **env)
+{
+	char	*path;
+	int		pid_wait;
+
+	if (cmd == NULL || cmd[0] == NULL)
 		comand_not_found(NULL, NULL);
-	cmd = ft_split(line, ' ');
-	if (!cmd)
-		ft_error_exit("Cannot allocate memory");
 	path = find_path(cmd[0], env);
 	if (!path || access(path, X_OK) == -1)
 		return (comand_not_found(cmd, path));
-	if (execve(path, cmd, env) == -1)
-	{
-		perror("Cannot execute command");
-		ft_free_array((void ***)&cmd);
-		free(path);
-		return (126);
-	}
-	ft_free_array((void ***)&cmd);
+	pid_wait = manage_pid(cmd, path, env);
 	free(path);
+	if (pid_wait)
+		return (1);
 	return (0);
 }
