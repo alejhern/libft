@@ -59,6 +59,8 @@ void				ft_error_exit(const char *msg);
 void				ft_func_error_exit(const char *msg, void **param,
 						void *(f)(void *));
 void				ft_perror_exit(const char *msg);
+// Declarations from ft_exec_catch.c
+char				*ft_exec_catch(const char *cmd);
 // Declarations from ft_execute.c
 int					ft_execute(char **cmd, char **env, int no_pid);
 // Declarations from ft_isalnum.c
