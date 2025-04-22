@@ -156,9 +156,12 @@ dirs:
 	@echo "📂 Directorios creados: $(YELLOW)$(OBJS_DIR) $(DEPS_DIR)$(RESET)"
 
 update:
-	@echo "🔄 Actualizando repositorio..."
-	@git pull > /dev/null 2>&1 
-	@echo "✅ Repositorio actualizado!"
+	@echo "🔄 Actualizando Libft..." 
+	@if git pull 2>&1 | grep -q "fatal"; then \
+		echo "⚠️  $(RED)Error: No se pudo actualizar la Libft.$(RESET)"; \
+	else \
+		echo "✅ $(GREEN)Libft actualizada!$(RESET)"; \
+	fi
 
 $(OBJS_DIR)/%.o: %.c | dirs
 	@$(eval COMPILED=$(shell expr $(COMPILED) + 1))
