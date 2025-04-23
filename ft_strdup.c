@@ -25,7 +25,7 @@ char	*ft_strdup(const char *str)
 	return (dup);
 }
 
-char	*ft_save_strdup(const char *str)
+char	*ft_safe_strdup(const char *str)
 {
 	char	*dup;
 

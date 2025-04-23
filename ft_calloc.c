@@ -27,7 +27,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (arr);
 }
 
-void	*ft_save_calloc(size_t nmemb, size_t size)
+void	*ft_safe_calloc(size_t nmemb, size_t size)
 {
 	void	*arr;
 

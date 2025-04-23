@@ -24,7 +24,7 @@ t_list	*ft_lstnew(void *content)
 	return (lst);
 }
 
-t_list	*ft_save_lstnew(void *content)
+t_list	*ft_safe_lstnew(void *content)
 {
 	t_list	*lst;
 
