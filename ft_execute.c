@@ -58,23 +58,21 @@ static int	manage_pid(char **cmd, char *path, char **env, int shell_mode)
 	if (shell_mode)
 		pid = fork();
 	if (pid == -1)
-	{
-		perror("fork failed");
-		ft_free_array((void ***)&cmd);
-		free(path);
-		return (1);
-	}
+		return (perror("fork failed"), ft_free_array((void ***)&cmd),
+			free(path), 0);
 	else if (pid == 0)
 	{
 		if (execve(path, cmd, env) == -1)
 		{
 			perror("Cannot execute command");
+			if (shell_mode)
+				return (0);
 			exit(126);
 		}
 	}
 	else
 		waitpid(pid, &status, 0);
-	return (0);
+	return (1);
 }
 
 int	ft_execute(char **cmd, char **env, int shell_mode)
