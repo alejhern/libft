@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "pipex.h"
 
 static void	child_process(int pipe_fd[2], const char *cmd)
 {

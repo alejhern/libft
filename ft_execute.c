@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "pipex.h"
 
 static char	*find_path(char *cmd, char **env)
 {

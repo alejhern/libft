@@ -41,7 +41,6 @@ SRCS      = ft_array_mods.c \
             ft_memmove.c \
             ft_memset.c \
             ft_nblen.c \
-            ft_pipex.c \
             ft_pos.c \
             ft_printf.c \
             ft_printf_float.c \
@@ -70,7 +69,6 @@ SRCS      = ft_array_mods.c \
             ft_tolower.c \
             ft_toupper.c \
             get_next_line.c \
-            pipex_utils.c
 
 SRCS_B    = ft_lstadd_back_bonus.c \
             ft_lstadd_front_bonus.c \
