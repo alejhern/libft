@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-static void	child_process(int pipe_fd[2], const char *cmd)
+static void	child_process(int pipe_fd[2], char **cmd, char **envp)
 {
 	close(pipe_fd[0]);
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[1]);
-	execlp(cmd, cmd, (char *) NULL);
+	ft_execute(cmd, envp, 0);
 	perror("execlp");
 	exit(1);
 }
@@ -49,7 +49,7 @@ static char	*parent_process(int pipe_fd[2], pid_t pid)
 	return (output);
 }
 
-char	*ft_exec_catch(const char *cmd)
+char	*ft_exec_catch(char **cmd, char **envp)
 {
 	int		pipe_fd[2];
 	pid_t	pid;
@@ -62,7 +62,7 @@ char	*ft_exec_catch(const char *cmd)
 	if (pid == -1)
 		return (perror("fork"), NULL);
 	if (pid == 0)
-		child_process(pipe_fd, cmd);
+		child_process(pipe_fd, cmd, envp);
 	else
 		output = parent_process(pipe_fd, pid);
 	return (output);
