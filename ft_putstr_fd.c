@@ -18,9 +18,9 @@ int	ft_putstr_fd(const char *str, int fd)
 		return (-2);
 	while (*str)
 	{
-		if (ft_putchar_fd(*str, fd) == -1)
-			return (-1);
+		if (!ft_putchar_fd(*str, fd))
+			return (0);
 		str++;
 	}
-	return (0);
+	return (1);
 }

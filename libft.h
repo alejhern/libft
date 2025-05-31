@@ -61,7 +61,7 @@ void				ft_func_error_exit(const char *msg, void **param,
 						void *(f)(void *));
 void				ft_perror_exit(const char *msg);
 // Declarations from ft_exec_catch.c
-char				*ft_exec_catch(const char *cmd);
+char				*ft_exec_catch(char **cmd, char **envp);
 // Declarations from ft_execute.c
 int					ft_execute(char **cmd, char **env, int no_pid);
 // Declarations from ft_isalnum.c
@@ -154,6 +154,7 @@ size_t				ft_strlen(const char *str);
 // Declarations from ft_strmapi.c
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 // Declarations from ft_strncmp.c
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 // Declarations from ft_strnstr.c
 char				*ft_strnstr(char const *big, char const *little,
