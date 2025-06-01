@@ -43,7 +43,7 @@ static int	comand_not_found(char **cmd, char *path)
 {
 	ft_putstr_fd("comand not found: ", 2);
 	if (cmd)
-		ft_putendl_fd(cmd[0], 2);
+		ft_putstr_fd(cmd[0], 2);
 	free(path);
 	return (127);
 }
