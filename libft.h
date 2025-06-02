@@ -63,7 +63,7 @@ void				ft_perror_exit(const char *msg);
 // Declarations from ft_exec_catch.c
 char				*ft_exec_catch(char **cmd, char **envp);
 // Declarations from ft_execute.c
-int					ft_execute(char **cmd, char **env, int no_pid);
+int					ft_execute(char **cmd, char **env, int make_fork);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c

@@ -117,7 +117,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_getenv(const char *name, char **env)`: Retrieves the value of an environment variable.
 - `ft_unsetenv(const char *name, char ***env)`: Removes an environment variable from the array.
 - `ft_setenv(const char *name, const char *value, char ***env)`: Adds or updates an environment variable in the array.
-- `ft_execute(char *line, char **env)`: Executes a command line.
+- `ft_execute(char *line, char **env, int make_fork)`: Executes a command line.
 - `ft_exec_catch(const char *cmd)`: Executes a system command (such as ls, whoami, etc.) and captures its standard output (stdout), returning the result as a string (char *).
 
 ---
