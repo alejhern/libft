@@ -114,6 +114,8 @@ void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *dest, int c, size_t len);
 // Declarations from ft_nblen.c
 size_t				ft_nblen(int nb);
+// Declarations from ft_pipe.c
+int					ft_pipe(int input_fd, char **cmd, char **env);
 // Declarations from ft_pos.c
 t_pos				ft_pos_add(t_pos a, t_pos b);
 t_pos				ft_pos_sub(t_pos a, t_pos b);
