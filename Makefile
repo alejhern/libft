@@ -41,6 +41,7 @@ SRCS      = ft_array_mods.c \
             ft_memmove.c \
             ft_memset.c \
             ft_nblen.c \
+            ft_pipe.c \
             ft_pos.c \
             ft_printf.c \
             ft_printf_float.c \
