@@ -46,7 +46,7 @@ static int	comand_not_found(char **cmd, char *path)
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
 	free(path);
-	return (127);
+	return (0);
 }
 
 static int	manage_pid(char **cmd, char *path, char **env, int make_fork)
@@ -65,8 +65,6 @@ static int	manage_pid(char **cmd, char *path, char **env, int make_fork)
 		if (execve(path, cmd, env) == -1)
 		{
 			ft_putendl_fd("Cannot execute command", STDERR_FILENO);
-			if (make_fork)
-				return (0);
 			exit(126);
 		}
 	}
