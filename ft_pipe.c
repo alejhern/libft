@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pipe.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amhernandez <alejhern@student.42.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/09 09:17:08 by amhernandez       #+#    #+#             */
+/*   Updated: 2025/06/09 09:17:22 by amhernandez      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-static int  parent_pipe_process(int pipe_fd[2], int input_fd)
+static int	parent_pipe_process(int pipe_fd[2], int input_fd)
 {
-    close(pipe_fd[1]);
+	close(pipe_fd[1]);
 	if (input_fd != -1)
 		close(input_fd);
 	return (pipe_fd[0]);
@@ -54,5 +65,5 @@ int	ft_pipe(int input_fd, char **cmd, char **env)
 		return (child_response);
 	}
 	else
-	    return (parent_pipe_process(pipe_fd, input_fd));
+		return (parent_pipe_process(pipe_fd, input_fd));
 }
