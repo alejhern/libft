@@ -119,6 +119,7 @@ The project is organized into multiple C files, each containing specific functio
 - `ft_setenv(const char *name, const char *value, char ***env)`: Adds or updates an environment variable in the array.
 - `ft_execute(char *line, char **env, int make_fork)`: Executes a command line.
 - `ft_exec_catch(const char *cmd)`: Executes a system command (such as ls, whoami, etc.) and captures its standard output (stdout), returning the result as a string (char *).
+- `ft_pipe(int input_fd, char **cmd, char **env);`: Executes a comand line in a pipe.
 
 ---
 
