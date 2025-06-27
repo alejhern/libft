@@ -17,6 +17,8 @@ char	*ft_strdup(const char *str)
 	size_t	size;
 	char	*dup;
 
+	if (!str)
+		return (NULL);
 	size = ft_strlen(str) + 1;
 	dup = (char *)ft_calloc(size, sizeof(char));
 	if (!dup)
@@ -29,6 +31,8 @@ char	*ft_safe_strdup(const char *str)
 {
 	char	*dup;
 
+	if (!str)
+		return (NULL);
 	dup = ft_strdup(str);
 	if (!dup)
 		ft_perror_exit("can't allocate memory");

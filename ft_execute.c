@@ -41,7 +41,7 @@ static char	*find_path(char *cmd, char **env)
 
 static int	comand_not_found(char **cmd, char *path)
 {
-	ft_putstr_fd("comand not found: ", STDERR_FILENO);
+	ft_putstr_fd("command not found: ", STDERR_FILENO);
 	if (cmd)
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
