@@ -20,6 +20,8 @@ static char	*find_path(char *cmd, char **env)
 
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
+	if (!env || ft_memlen(env) == 0)
+		return (NULL);
 	paths = ft_split(ft_getenv("PATH", env) + 5, ':');
 	if (!paths)
 		ft_error_exit("malloc err");
