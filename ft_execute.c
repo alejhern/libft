@@ -46,34 +46,29 @@ static int	comand_not_found(char **cmd, char *path)
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
 	free(path);
-	return (0);
+	return (127);
 }
 
-static int	manage_pid(char **cmd, char *path, char **env, int make_fork)
+static int	manage_pid(char **cmd, char *path, char **env, pid_t *pid)
 {
-	pid_t	pid;
-	int		status;
-
-	pid = 0;
-	if (make_fork)
-		pid = fork();
-	if (pid == -1)
+	if (pid)
+		*pid = fork();
+	if (pid && *pid == -1)
 		return (perror("fork failed"), ft_free_array((void ***)&cmd),
-			free(path), 0);
-	else if (pid == 0)
+			free(path), 1);
+	else if (!pid || *pid == 0)
 	{
 		if (execve(path, cmd, env) == -1)
 		{
 			ft_putendl_fd("Cannot execute command", STDERR_FILENO);
 			exit(126);
 		}
+		return (0);
 	}
-	else
-		waitpid(pid, &status, 0);
-	return (1);
+	return (0);
 }
 
-int	ft_execute(char **cmd, char **env, int make_fork)
+int	ft_execute(char **cmd, char **env, pid_t *pid)
 {
 	char	*path;
 	int		pid_wait;
@@ -83,7 +78,7 @@ int	ft_execute(char **cmd, char **env, int make_fork)
 	path = find_path(cmd[0], env);
 	if (!path || access(path, X_OK) == -1)
 		return (comand_not_found(cmd, path));
-	pid_wait = manage_pid(cmd, path, env, make_fork);
+	pid_wait = manage_pid(cmd, path, env, pid);
 	free(path);
 	return (pid_wait);
 }

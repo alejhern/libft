@@ -38,25 +38,26 @@ static int	child_pipe_process(int input_fd, int pipe_fd[2], char **cmd,
 		return (-1);
 	}
 	close(pipe_fd[1]);
-	return (ft_execute(cmd, env, 0));
+	return (ft_execute(cmd, env, NULL));
 }
 
-int	ft_pipe(int input_fd, char **cmd, char **env)
+int	ft_pipe(int input_fd, char **cmd, char **env, pid_t *pid)
 {
-	int		pipe_fd[2];
-	pid_t	pid;
-	int		child_response;
+	int	pipe_fd[2];
+	int	child_response;
 
+	if (!pid)
+		return (-1);
 	if (pipe(pipe_fd) == -1)
 		return (0);
-	pid = fork();
-	if (pid == -1)
+	*pid = fork();
+	if (*pid == -1)
 	{
 		close(pipe_fd[0]);
 		close(pipe_fd[1]);
 		return (0);
 	}
-	if (pid == 0)
+	if (*pid == 0)
 	{
 		close(pipe_fd[0]);
 		child_response = child_pipe_process(input_fd, pipe_fd, cmd, env);

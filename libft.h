@@ -63,7 +63,7 @@ void				ft_perror_exit(const char *msg);
 // Declarations from ft_exec_catch.c
 char				*ft_exec_catch(char **cmd, char **envp);
 // Declarations from ft_execute.c
-int					ft_execute(char **cmd, char **env, int make_fork);
+int					ft_execute(char **cmd, char **env, pid_t *pid);
 // Declarations from ft_isalnum.c
 int					ft_isalnum(int c);
 // Declarations from ft_isalpha.c
@@ -115,7 +115,7 @@ void				*ft_memset(void *dest, int c, size_t len);
 // Declarations from ft_nblen.c
 size_t				ft_nblen(int nb);
 // Declarations from ft_pipe.c
-int					ft_pipe(int input_fd, char **cmd, char **env);
+int					ft_pipe(int input_fd, char **cmd, char **env, pid_t *pid);
 // Declarations from ft_pos.c
 t_pos				ft_pos_add(t_pos a, t_pos b);
 t_pos				ft_pos_sub(t_pos a, t_pos b);
