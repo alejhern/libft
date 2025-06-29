@@ -53,8 +53,11 @@ char	*ft_exec_catch(char **cmd, char **envp)
 	int		pipe_fd[2];
 	pid_t	pid;
 	char	*output;
+	int		err_fd;
 
 	output = NULL;
+	err_fd = dup(STDERR_FILENO);
+	close(STDERR_FILENO);
 	if (pipe(pipe_fd) == -1)
 		return (perror("pipe"), NULL);
 	pid = fork();
@@ -64,5 +67,7 @@ char	*ft_exec_catch(char **cmd, char **envp)
 		child_process(pipe_fd, cmd, envp, &pid);
 	else
 		output = parent_process(pipe_fd, &pid);
+	dup2(err_fd, STDERR_FILENO);
+	close(err_fd);
 	return (output);
 }

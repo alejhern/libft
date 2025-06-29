@@ -12,6 +12,33 @@
 
 #include "libft.h"
 
+static void	child_pipe_process(int input_fd, int pipe_fd[2], char **cmd,
+		char **env)
+{
+	if (input_fd != -1)
+	{
+		if (dup2(input_fd, STDIN_FILENO) == -1)
+		{
+			perror("dup2 input");
+			close(input_fd);
+			close(pipe_fd[0]);
+			close(pipe_fd[1]);
+			exit(1);
+		}
+		close(input_fd);
+	}
+	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
+	{
+		perror("dup2 output");
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
+		exit(1);
+	}
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	exit(ft_execute(cmd, env, NULL)); // ← punto de salida único
+}
+
 static int	parent_pipe_process(int pipe_fd[2], int input_fd)
 {
 	close(pipe_fd[1]);
@@ -20,31 +47,9 @@ static int	parent_pipe_process(int pipe_fd[2], int input_fd)
 	return (pipe_fd[0]);
 }
 
-static int	child_pipe_process(int input_fd, int pipe_fd[2], char **cmd,
-		char **env)
-{
-	if (input_fd != -1)
-	{
-		if (dup2(input_fd, STDIN_FILENO) == -1)
-		{
-			perror("dup2 input");
-			return (-1);
-		}
-		close(input_fd);
-	}
-	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
-	{
-		perror("dup2 output");
-		return (-1);
-	}
-	close(pipe_fd[1]);
-	return (ft_execute(cmd, env, NULL));
-}
-
 int	ft_pipe(int input_fd, char **cmd, char **env, pid_t *pid)
 {
 	int	pipe_fd[2];
-	int	child_response;
 
 	if (!pid)
 		return (-1);
@@ -58,13 +63,6 @@ int	ft_pipe(int input_fd, char **cmd, char **env, pid_t *pid)
 		return (0);
 	}
 	if (*pid == 0)
-	{
-		close(pipe_fd[0]);
-		child_response = child_pipe_process(input_fd, pipe_fd, cmd, env);
-		if (child_response)
-			close(pipe_fd[1]);
-		return (child_response);
-	}
-	else
-		return (parent_pipe_process(pipe_fd, input_fd));
+		child_pipe_process(input_fd, pipe_fd, cmd, env);
+	return (parent_pipe_process(pipe_fd, input_fd));
 }
