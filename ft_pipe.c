@@ -36,7 +36,7 @@ static void	child_pipe_process(int input_fd, int pipe_fd[2], char **cmd,
 	}
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
-	exit(ft_execute(cmd, env, NULL)); // ← punto de salida único
+	exit(ft_execute(cmd, env, NULL));
 }
 
 static int	parent_pipe_process(int pipe_fd[2], int input_fd)
