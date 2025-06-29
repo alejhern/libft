@@ -60,6 +60,7 @@ static int	manage_pid(char **cmd, char *path, char **env, pid_t *pid)
 			free(path), 1);
 	else if (!pid || *pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		if (execve(path, cmd, env) == -1)
 		{
 			ft_putendl_fd("Cannot execute command", STDERR_FILENO);
