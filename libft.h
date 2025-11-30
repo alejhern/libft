@@ -77,6 +77,8 @@ int					ft_isdigit(int c);
 int					ft_isnum(char *num);
 // Declarations from ft_isprint.c
 int					ft_isprint(int c);
+// Declarations from ft_isspace.c
+int					ft_isspace(int c);
 // Declarations from ft_itoa.c
 char				*ft_itoa(int nb);
 // Declarations from ft_itoa_base.c

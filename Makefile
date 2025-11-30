@@ -32,6 +32,7 @@ SRCS      = ft_array_mods.c \
             ft_isdigit.c \
             ft_isnum.c \
             ft_isprint.c \
+            ft_isspace.c \
             ft_itoa.c \
             ft_itoa_base.c \
             ft_memchr.c \
